@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervare</title>
+    <style>
+        body{display: flex; flex-direction: column;align-items: center; padding: 0; margin: 0;}
+        #prima{background-color: rgb(208, 112, 71); display: flex; align-items: center; flex-direction: column; margin-top: 2cm; width: 70%; max-height: max-content; border-style: solid;}
+        .container {width: 300px; margin: 0; border-style: solid;}
+        form {display: flex; flex-direction: column;}
+        input, button {margin-bottom: 10px; padding: 10px; font-size: 16px;}
+        button {background-color: #4CAF50; color: white; border: none; cursor: pointer;}
+        button:hover {background-color: #45a049;}
+        #divulet4{color: rgb(255, 212, 42);}
+    </style>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<div id="prima">
+    <div class="container">
+        <h2>Formular de Rezervare</h2>
+        <form action="confirmare-rezervare" method="POST">
+            {% csrf_token %}
+            {{ form.nume.label_tag }} {{ form.nume }}
+            {{ form.prenume.label_tag }} {{ form.prenume }}
+            {{ form.email_sau_telefon.label_tag }} {{ form.email_sau_telefon }}
+            {{ form.data.label_tag }} {{ form.data }}
+            {{ form.ora.label_tag }} {{ form.ora }}
+            <input type="submit" value="Rezerva">
+        </form>
+    </div>
+</div>
+
+{% endblock main %}
+</body>
+</html>

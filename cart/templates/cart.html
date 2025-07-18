@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{display: flex; flex-direction: column;align-items: center; padding: 0; margin: 0;}
+    #prima{background-color: rgb(208, 112, 71); margin-top: 2cm; width: 70%; max-height: max-content; border-style: solid; display: flex; flex-direction: row;}
+    form {display: flex; flex-direction: column;}
+    #formularlivrare{display: grid;}
+    #adoua{width: 30%; margin-right: 2cm; margin-left: 2cm;}
+    #adouaa{width: 30%; margin-right: 2cm; margin-left: 2cm;}
+    #divulet3{color: rgb(255, 212, 42);}
+</style>
+<body>
+{% extends "base.html" %}
+
+{% block main %}
+
+<div id="prima">
+    <div id="adoua">
+        <h1> Cos de Cumparaturi </h1>
+        <ol>
+        {% for prod, qty  in products  %}
+            <li> 
+                <div>{{prod}}</div>
+
+                <div> {{ qty }} bucati </div>
+            </li>
+        {% endfor %}
+
+        </ol>
+        {% if  products %}
+            <h2>Total: {{total}}</h2>
+            <form action= {% url "empty_cart_url" %} method="post">
+                {% csrf_token %}
+                <input type="submit" value="Empty cart">
+            </form>
+        {% endif %}
+    </div>
+    <div id="adouaa">
+        <h1>Informatii livrare</h1>
+        <div id ='formularlivrare'>
+            <form id="payment-form" method="post" action="{% url 'cart_url' %}">
+                {% csrf_token %}
+                {{form.nume.label_tag}} {{form.nume}}
+                {{form.prenume.label_tag}} {{form.prenume}}
+                {{ form.email.label_tag }} {{ form.email }}
+                {{ form.numar_telefon.label_tag }} {{ form.numar_telefon }}
+                {{ form.adresa.label_tag }} {{ form.adresa }}
+            
+                
+                <div class="payment-option">
+                    <input type="radio" id="card" name="payment_method" value="online_payment" required>
+                    <label for="card">Plata cu Cardul Online</label>
+                </div>
+                <div class="payment-option">
+                    <input type="radio" id="cod" name="payment_method" value="cash_on_delivery" required>
+                    <label for="cod">Plata la Livrare</label>
+                </div>
+            
+                <input type="submit" value="Comanda">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock main %}
+</body>
+</html>

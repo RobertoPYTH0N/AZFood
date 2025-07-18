@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        body{ display: flex; flex-direction: column;}
+        h1, h2, h3{ margin-top: 0,5cm; background-color: rgb(208, 112, 71); width: 60%; text-align: center; border-style: solid; align-self: center; border-color: black; color: black;}
+        span{width: 80%; margin-top: 2cm; align-self: center; background-color: gray; border-style: solid;  display: flex; flex-direction: column;}
+    </style>
+<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<span>
+    <h1>Felicitari! Rezervarea a fost facuta cu succes!</h1>
+    <h2>Vei primi in maxim 5 minute un EMAIL/SMS de confirmare! In cazul in care nu ai primit nimic, creaza o rezervare din nou!</h2>
+    <h3>Cu o zi inainte de rezervare vei mai primi un EMAIL/SMS la care trebuie sa raspunzi pentru a confirma rezervare!</h3>
+</span>
+{% endblock main %}
+</body>
+</html>

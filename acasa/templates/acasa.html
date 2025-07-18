@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+    }
+    #prima {
+      background-color: rgb(208, 112, 71);
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 2cm;
+      width: 70%;
+      max-height: max-content;
+      border-style: solid;
+      padding: 1rem;
+    }
+    #povesteanoastra{font-size: 40px; font-family: 'Lucida Sans'; margin-bottom: 1cm; border-style: solid;}
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      margin: auto;
+    }
+    .slide {
+      display: none;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    .dots-container {
+      text-align: center;
+      padding: 10px;
+      background: #000000;
+      border-radius: 10px;
+      margin-top: 10px;
+      margin-bottom: 1cm;
+    }
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #c96f01;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    .active, .dot:hover {
+      background-color: #816407;
+    }
+    #harta{ display: flex; flex-direction: column;border-style: solid;}
+    h1{margin-left: 4.5cm; border-style: solid; max-width: fit-content; font-family: 'Lucida Sans'}
+    #detaliilocatie{display: grid; width: 100%; grid-template-columns: 63% 37%;}
+    #contactele{font-family: 'Lucida Sans'; font-size: x-large; border-style: solid; margin-top: 1cm; }
+    #contact{border-style: solid; border-left: 0; display: flex; flex-direction: column; align-items: center;}    
+    #adresa{font-family: 'Lucida Sans'; font-size: x-large; border-style: solid; margin-top: 1cm;}
+    #strada{font-family: 'Lucida Sans'; margin-top: 0.5cm;}
+    #telefon{font-family: 'Lucida Sans'; margin-top: 0.5cm;}
+    #email{font-family: 'Lucida Sans'; margin-top: 0.5cm;}
+    #divulet1{color: rgb(255, 212, 42);}
+  </style>
+</head>
+<body>
+     
+{% extends "base.html" %}
+{% load static %}
+    
+{% block main %}
+  <div id="prima">
+    <div id="povesteanoastra">POVESTEA NOASTRA</div>
+    <div class="slideshow-container">
+
+      <div class="slide fade">
+        <img src="{% static 'poza1.png' %}" alt="Image 1">
+      </div>
+      <div class="slide fade">
+        <img src="{% static 'poza3.png' %}" alt="Image 2">
+      </div>
+      <div class="slide fade">
+        <img src="{% static 'poza2.png' %}" alt="Image 3">
+      </div>
+
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <div class="dots-container">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+    <div id="detaliilocatie">
+      <div id="harta">
+        <h1>Locatia noastra</h1>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22793.18206989036!2d26.0485639!3d44.430131200000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sro!2sro!4v1725022895491!5m2!1sro!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div id="contact">
+        <div id="adresa">Adresa</div>
+        <div id="strada">Strada Viaductului nr. 25, Sector 6, Bucuresti</div>
+        <div id="contactele>">Contact</div>
+        <div id="telefon">0735462975</div>
+        <div id="email">azfood@restaurantfastfood.ro</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    showSlides();
+
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n - 1);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+
+        if (n >= slides.length) { slideIndex = 0 }
+        if (n < 0) { slideIndex = slides.length - 1 }
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex].style.display = "block";  
+        dots[slideIndex].className += " active";
+    }
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+        
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        
+        slides[slideIndex - 1].style.display = "block";  
+        dots[slideIndex - 1].className += " active";
+        
+        setTimeout(showSlides, 10000);
+    }
+  </script>
+{% endblock main %}
+
+</body>
+</html>

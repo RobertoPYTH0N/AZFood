@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        body{ display: flex; flex-direction: column;}
+        h1, h2 { margin-top: 0,5cm; background-color: rgb(208, 112, 71); width: 60%; text-align: center; border-style: solid; align-self: center;}
+        span{width: 80%; margin-top: 2cm; align-self: center; background-color: gray; border-style: solid; display: flex; flex-direction: column;}
+    </style>
+    </style>
+<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block main %}
+<span>
+    <h1>Comanda a fost plasata!</h1>
+    <h2>Te vom contacta cu 5 minute inainte sa ajungem!</h2>
+</span>
+{% endblock main %}
+</body>
+</html>

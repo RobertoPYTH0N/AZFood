@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body{background-image: url("{% static 'bac.png' %}"); display: flex; flex-direction: column;}
+
+       header{background-color: rgb(208, 112, 71); display: flex; align-items: center; flex-direction: row; width: 80%; margin: auto; height: 4cm; border-style: solid;}
+
+       base{display: flex; align-items: center; flex-direction: row;}
+
+       #divulet1, #divulet2, #divulet3, #divulet4 {border-left: 2px; border-right: 2px; border-color: black; border-style:groove; max-height: 0.5cm;
+         width: 140px; border-top: none;border-bottom: none;border-left: none; display: flex; align-items: center;
+          font-size: x-large; font-family: 'Courier New', Courier, monospace; align-self: center; margin: auto; padding: 40px;}
+        
+        footer{background-color: black; height: 20%; width: 100%; display: flex; flex-direction: column; align-items: center; margin-top: 150px;}
+        h3{color: white;}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{% static 'logoooo.png' %}" style="width: 150px;">
+        <base>
+            <div id="divulet1" onclick="window.location.href = 'http://127.0.0.1:8000/acasa/';">ACASA</div>
+            <div id="divulet2" onclick="window.location.href = 'http://127.0.0.1:8000/mancare/';">MENIU</div>
+            <div id="divulet3" onclick="window.location.href = 'http://127.0.0.1:8000/cart/';">LIVRARE ACASA</div>
+            <div id="divulet4" onclick="window.location.href = 'http://127.0.0.1:8000/rezervari/';">REZERVARI</div>
+        </base>
+    </header>
+    
+    
+{% block main %}
+{% endblock main %}
+</body>
+<footer>
+    <h3>All rights reserved</h3>
+</footer>
+</html>

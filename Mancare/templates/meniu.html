@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{display: flex; flex-direction: column;align-items: center; padding: 0; margin: 0;}
+        #prima{background-color: rgb(208, 112, 71); display: flex; align-items: center; flex-direction: column; margin-top: 2cm; width: 70%; max-height: max-content; border-style: solid;}
+        #adoua{display: flex; flex-direction: column;align-items: center; width: 100%;}
+        #titlumeniu{font-size:450%; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;}
+        #titlucategorii{font-size: medium; align-self: baseline; width: 100%; margin-left: 2cm;}
+        #categoriile{font-size: small; align-items: baseline; width: 100%;}
+        #atreia{display: grid; width: 100%; grid-template-columns: 30% 30% 30%; text-align: center; justify-content: center; gap: 20px; margin-top: 1cm; grid-template-columns: repeat(3,1fr);}
+        #felmancare{border-style: solid; display:grid; grid-row: auto;}
+        #casutacategorii{border-style: solid; align-self: first baseline; width: 100%; border-left: 0; border-right: 0;}
+        #divulet2{color: rgb(255, 212, 42);}
+    </style>
+    
+</head>
+<body>
+    
+{% extends "base.html" %}
+{% load static %}
+    
+{% block main %}
+<div id="prima">
+    <div id="adoua">
+        <div id="titlumeniu">Meniu</div>
+        <div id="casutacategorii">
+            <div id="titlucategorii">Categorii:</div>
+            <div id="categoriile">
+                {% for o_categorie in categorie %}
+                    <li> {{o_categorie }} </li>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div id="atreia">
+        {% for o_reteta in retete %}
+        <div id="felmancare">
+            <div id="imaginea">
+                {% if  o_reteta.image %}
+                <img src="{{o_reteta.image.url}} " 
+                style="width: 150px;">
+            {% else %}
+                <img src="{% static 'default-product-image.png' %}" 
+            style="width: 200px;">
+            {% endif %}
+            </div>
+            <ul> {{o_reteta}} </ul>
+            <ul> {{o_reteta.price}} </ul>
+            <div>
+                <a href="{{o_reteta.slug}}">
+                    <button>Detalii Produs</button>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock main %}
+</body>
+</html>
+
